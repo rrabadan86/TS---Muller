@@ -530,7 +530,7 @@ def trocar_loja(page, loja_nome=None):
     alvo = (
         loja_nome
         or os.getenv("APPNEXT_LOJA_DESTINO")
-        or "GOIANIA - TEA SHOP FLAMBOYANT"
+        or "CURITIBA - SHOPPING MULLER"
     )
     alvo_regex = re.compile(rf"^{re.escape(alvo)}\.?$", re.IGNORECASE)
 
@@ -541,8 +541,8 @@ def trocar_loja(page, loja_nome=None):
             [
                 "button:has-text('TEA SHOP')",
                 "button:has-text('VILA MADALENA')",
-                "button:has-text('FLAMBOYANT')",
-                "text=/S[ÂA]O PAULO - TEA SHOP|GOI[ÂA]NIA - TEA SHOP/i",
+                "button:has-text('MULLER')",
+                "text=/CURITIBA - SHOPPING MULLERi",
                 "[data-bs-toggle='dropdown']",
                 ".dropdown-toggle",
                 "xpath=(//*[contains(translate(normalize-space(.),'áãéíóúâêô','aaeiouaeo'),'TEA SHOP')])[1]",
@@ -637,7 +637,7 @@ def main():
                 pass
 
             # 2) Trocar loja via secret (habilite se quiser forçar)
-            # trocar_loja(page, os.getenv("APPNEXT_LOJA_DESTINO"))
+            trocar_loja(page, os.getenv("APPNEXT_LOJA_DESTINO"))
 
             # 3) Ir para Vendas > Vendedor Analítico
             step("3) Menu: Vendas → Vendedor Analítico")
